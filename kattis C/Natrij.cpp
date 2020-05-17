@@ -1,0 +1,84 @@
+#include<stdio.h>
+int main()
+{
+    int a,s[3],t1[3]={0},f=0,c=0,t2[3]={0},j,tem,t3[3]={0},b[3],i;
+    char t[8];
+    scanf("%s",t);
+    for(i=0;i<8;i++)
+    {
+      if(t[i]!=':'&&t[i]!='\0')
+      {
+         a=t[i]-48;
+         t1[c]=(t1[c]*10)+a;
+      }
+      else
+        c++;
+    }
+    scanf("%s",t);
+    c=0;
+    for(i=0;i<8;i++)
+    {
+      if(t[i]!=':'&&t[i]!='\0')
+      {
+         a=t[i]-48;
+         t2[c]=(t2[c]*10)+a;
+      }
+      else
+        c++;
+    }
+    for(i=0;i<3;i++)
+    {
+        if(t1[i]==t2[i])
+            f=1;
+        else
+        {
+            f=0;
+            break;
+        }
+    }
+   if(f==1)
+   {
+    printf("24:00:00");
+   }
+   else
+   {
+     for(i=2;i>=0;i--)
+     {
+       b[0]=24;
+       b[1]=60;
+       b[2]=60;
+        c=0;
+        tem=t1[i];
+        if(t1[i]<t2[i])
+        {
+           while((tem%b[i])<t2[i])
+           {
+               tem++;
+               c++;
+           }
+        }
+        else if(t1[i]==t2[i])
+        {
+            s[i]=0;
+        }
+        else
+        {
+           c+=(b[i]-t1[i]);
+           if(i-1>=0)
+           {
+             t1[i-1]++;
+             t1[i-1]=t1[i-1]%b[i-1];
+             if(t1[i-1]==0)
+             {
+                 t1[i-2]++;
+                 t1[i-2]=t1[i-2]%b[i-2];
+             }
+           }
+           c+=t2[i];
+        }
+        s[i]=c;
+     }
+     printf("%02d:%02d:%02d",s[0],s[1],s[2]);
+   }
+   return 0;
+}

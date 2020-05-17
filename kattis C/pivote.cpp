@@ -1,0 +1,84 @@
+#include<stdio.h>
+#include<algorithm>
+using namespace std;
+int main()
+{
+    long int j,a[100000],c=0,pp=0,n,i,b[100000];
+    int f1,f;
+    scanf("%ld",&n);
+    for(i=0;i<n;i++)
+    {
+        scanf("%ld",&a[i]);
+        b[i]=a[i];
+    }
+    sort(b,b+n);
+    for(i=0;i<n;i++)
+    {
+        if(b[i]==a[i])
+        {
+            if(i==0)
+            {
+              for(j=i+1;j<n;j++)
+              {
+                if(a[j]>a[i])
+                    f1=1;
+                else
+                {
+                    f1=0;
+                    break;
+                }
+               }
+               if(f1==1)
+                {
+                  c++;
+                  pp=i;
+                }
+            }
+            else if(i==n-1)
+            {
+              for(j=pp;j<n-1;j++)
+              {
+                if(a[j]<a[i])
+                    f1=1;
+                else
+                {
+                    f1=0;
+                    break;
+                }
+              }
+              if(f1==1)
+                {c++;pp=i;}
+             }
+            else
+            {
+              for(j=pp;j<i;j++)
+              {
+                if(a[j]<a[i])
+                    f=1;
+                else
+                {
+                    f=0;
+                    break;
+                }
+              }
+              for(j=i+1;j<n;j++)
+              {
+                if(a[j]>a[i])
+                    f1=1;
+                else
+                {
+                    f1=0;
+                    break;
+                }
+              }
+              if(f==1&&f1==1)
+              {
+                c++;
+                pp=i;
+              }
+            }
+        }
+    }
+    printf("%ld",c);
+    return 0;
+}

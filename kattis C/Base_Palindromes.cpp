@@ -1,0 +1,63 @@
+#include<stdio.h>
+int main()
+{
+    long long int c=0,ct=1,j,t,k,z,l,m,i,n,a[100000];
+    scanf("%d",&n);
+    m=2;
+    if(n==1)
+        printf("1");
+   else
+   {
+    while(1)
+    {
+       c=0;
+       t=m;
+       while(t!=0)
+       {
+         a[c]=t%2;
+         t=t/2;
+         c++;
+       }
+       l=c-1;
+       if(c%2==0)
+       {
+        for(i=0,j=l;(i<=l/2)&&(j>l/2);i++,j--)
+        {
+            if(a[i]==a[j])
+                k=1;
+            else
+            {
+                k=0;
+                break;
+            }
+        }
+       }
+       else
+       {
+        for(i=0,j=l;(i<l/2)&&(j>l/2);i++,j--)
+        {
+            if(a[i]==a[j])
+                k=1;
+            else
+            {
+                k=0;
+                break;
+            }
+        }
+       }
+       if(k==1)
+       {
+         ct++;
+       }
+      if(ct==n)
+       {
+           for(i=0;i<=l;i++)
+             printf("%d",a[i]);
+           printf("\n%d",m);
+           break;
+       }
+       m++;
+    }
+   }
+    return 0;
+}

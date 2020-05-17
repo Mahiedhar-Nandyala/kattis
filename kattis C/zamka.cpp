@@ -1,0 +1,40 @@
+#include<stdio.h>
+int main()
+{
+    int l,m,n,i,j,r,mn,mx;
+    scanf("%d",&l);
+    scanf("%d",&m);
+    scanf("%d",&n);
+    for(i=l;i<=m;i++)
+    {
+        r=0;
+        j=i;
+        while(j)
+        {
+            r+=j%10;
+            j=j/10;
+        }
+        if(r==n)
+        {
+            mn=i;
+            break;
+        }
+    }
+    for(i=m;i>=l;i--)
+    {
+        r=0;
+        j=i;
+        while(j)
+        {
+            r+=j%10;
+            j=j/10;
+        }
+        if(r==n)
+        {
+            mx=i;
+            break;
+        }
+    }
+    printf("%d\n%d",mn,mx);
+    return 0;
+}
